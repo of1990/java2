@@ -36,16 +36,15 @@ class ShoppingListApplication {
                         } else {
                             product.setPrice(price);
                         }
-
                         System.out.println("Enter product category: ");
                         String category = scanner.nextLine();
                         product.setCategory(category);
                         System.out.println("Enter product discount");
                         BigDecimal discount = new BigDecimal(scanner.nextLine());
-                        if (discount.intValue() < 100) {
+                        if (discount.compareTo(BigDecimal.ZERO) >= 0 && discount.intValue() < 100){
                             product.setDiscount(discount);
                         } else {
-                            throw new RuntimeException("The discount cannot be more than 100");
+                            throw new RuntimeException("The discount cannot be less than 0 and more than 100");
                         }
                         System.out.println("Enter product description");
                         String description = scanner.nextLine();
@@ -69,6 +68,8 @@ class ShoppingListApplication {
                         Product findProductResult;
                         System.out.println("Enter product id: ");
                         id = scanner.nextLong();
+                        scanner.nextLine();
+                        if (productRepository.containsKey(id)) {
                         findProductResult = productRepository.get(id);
                         System.out.println("Enter product name: ");
                         name = scanner.nextLine();
@@ -89,16 +90,18 @@ class ShoppingListApplication {
                         findProductResult.setCategory(category);
                         System.out.println("Enter product discount");
                         discount = new BigDecimal(scanner.nextLine());
-                        if (discount.intValue() < 100) {
+                        if (discount.compareTo(BigDecimal.ZERO) >= 0 && discount.intValue() < 100) {
                             findProductResult.setDiscount(discount);
                         } else {
-                            throw new RuntimeException("The discount cannot be more than 100");
+                            throw new RuntimeException("The discount cannot be less than 0 and more than 100");
                         }
                         System.out.println("Enter product description");
                         description = scanner.nextLine();
                         findProductResult.setDescription(description);
-                        System.out.println("product updated!");
-
+                        System.out.println("product updated!");}
+                        else {
+                            throw new RuntimeException("id not found or entered incorrectly");
+                        }
                         break;
                     case 4:
                         System.out.println("Enter product id: ");
