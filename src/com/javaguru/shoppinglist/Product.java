@@ -24,12 +24,8 @@ public class Product {
         return discount;
     }
 
-    public void setDiscount(BigDecimal discount) throws Exception {
-        if (discount.intValue() < 100) {
-            this.discount = discount.setScale(2,RoundingMode.HALF_EVEN);
-        } else {
-            throw new Exception("The discount cannot be more than 100");
-        }
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public String getDescription() {
@@ -52,24 +48,19 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) throws Exception {
-        if (name.length() > 3 && name.length() < 32) {
-            this.name = name;
-        } else {
-            throw new Exception ("The name must be no shorter than 3 characters and no longer than 32 characters");
-        }
+    public void setName(String name) {
+
+        this.name = name;
+
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) throws Exception {
-        if (price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new Exception("Price must be greater than 0");
-        } else {
-            this.price = price.setScale(2,RoundingMode.HALF_EVEN);
-        }
+    public void setPrice(BigDecimal price) {
+        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
+
     }
 
     @Override

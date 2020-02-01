@@ -24,16 +24,29 @@ class ShoppingListApplication {
                         Product product = new Product();
                         System.out.println("Enter product name: ");
                         String name = scanner.nextLine();
-                        product.setName(name);
+                        if (name.length() > 3 && name.length() < 32) {
+                            product.setName(name);
+                        } else {
+                            throw new RuntimeException("The name must be no shorter than 3 characters and no longer than 32 characters");
+                        }
                         System.out.println("Enter product price: ");
                         BigDecimal price = new BigDecimal(scanner.nextLine());
-                        product.setPrice(price);
+                        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+                            throw new RuntimeException("Price must be greater than 0");
+                        } else {
+                            product.setPrice(price);
+                        }
+
                         System.out.println("Enter product category: ");
                         String category = scanner.nextLine();
                         product.setCategory(category);
                         System.out.println("Enter product discount");
                         BigDecimal discount = new BigDecimal(scanner.nextLine());
-                        product.setDiscount(discount);
+                        if (discount.intValue() < 100) {
+                            product.setDiscount(discount);
+                        } else {
+                            throw new RuntimeException("The discount cannot be more than 100");
+                        }
                         System.out.println("Enter product description");
                         String description = scanner.nextLine();
                         product.setDescription(description);
@@ -45,28 +58,47 @@ class ShoppingListApplication {
                     case 2:
                         System.out.println("Enter product id: ");
                         long id = scanner.nextLong();
-                        Product findProductResult = productRepository.get(id);
-                        System.out.println(findProductResult);
+                        if (productRepository.containsKey(id)) {
+                            Product findProductResult = productRepository.get(id);
+                            System.out.println(findProductResult);
+                        } else {
+                            throw new RuntimeException("id not found or entered incorrectly");
+                        }
                         break;
                     case 3:
+                        Product findProductResult;
                         System.out.println("Enter product id: ");
                         id = scanner.nextLong();
                         findProductResult = productRepository.get(id);
                         System.out.println("Enter product name: ");
-                        name = scanner.next();
-                        findProductResult.setName(name);
+                        name = scanner.nextLine();
+                        if (name.length() > 3 && name.length() < 32) {
+                            findProductResult.setName(name);
+                        } else {
+                            throw new RuntimeException("The name must be no shorter than 3 characters and no longer than 32 characters");
+                        }
                         System.out.println("Enter product price: ");
-                        price = new BigDecimal(scanner.next());
-                        findProductResult.setPrice(price);
+                        price = new BigDecimal(scanner.nextLine());
+                        if (price.compareTo(BigDecimal.ZERO) <= 0) {
+                            throw new RuntimeException("Price must be greater than 0");
+                        } else {
+                            findProductResult.setPrice(price);
+                        }
                         System.out.println("Enter product category: ");
-                        category = scanner.next();
+                        category = scanner.nextLine();
                         findProductResult.setCategory(category);
                         System.out.println("Enter product discount");
-                        discount = new BigDecimal(scanner.next());
-                        findProductResult.setDiscount(discount);
+                        discount = new BigDecimal(scanner.nextLine());
+                        if (discount.intValue() < 100) {
+                            findProductResult.setDiscount(discount);
+                        } else {
+                            throw new RuntimeException("The discount cannot be more than 100");
+                        }
                         System.out.println("Enter product description");
-                        description = scanner.next();
+                        description = scanner.nextLine();
                         findProductResult.setDescription(description);
+                        System.out.println("product updated!");
+
                         break;
                     case 4:
                         System.out.println("Enter product id: ");
@@ -75,7 +107,7 @@ class ShoppingListApplication {
                             productRepository.remove(id);
                             System.out.println("Product has been removed!");
                         } else {
-                            throw new Exception("id not found or entered incorrectly");
+                            throw new RuntimeException("id not found or entered incorrectly");
                         }
                         break;
 
