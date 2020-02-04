@@ -28,15 +28,6 @@ public class ValidationService {
         }
     }
 
-    public void validateId(Long id) {
-        ProductRepository repository = new ProductRepository();
-
-        if (repository.getProductRepository().containsKey(id)) {
-            Product findProductResult = repository.getProductRepository().get(id);
-            System.out.println(findProductResult);
-        } else {
-            throw new RuntimeException("id not found or entered incorrectly");
-        }
-    }
+    
 
 }

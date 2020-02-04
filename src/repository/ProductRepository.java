@@ -10,13 +10,6 @@ public class ProductRepository {
     private Map<Long, Product> productRepository = new HashMap<>();
     private Long productIdSequence = 0L;
 
-    public Map<Long, Product> getProductRepository() {
-        return productRepository;
-    }
-
-    public void setProductRepository(Map<Long, Product> productRepository) {
-        this.productRepository = productRepository;
-    }
 
     public Product createProduct(Product product) {
         product.setId(productIdSequence);
