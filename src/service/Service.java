@@ -15,17 +15,14 @@ public class Service {
     }
 
     public Product findProductById(Long id) {
-        validation.validateId(id);
         return repository.findProductById(id);
     }
 
     public Product deleteProduct(Long id) {
-        validation.validateId(id);
         return repository.deleteProduct(id);
     }
 
     public Product updateProduct(Long id, Product product) {
-        validation.validateId(id);
         validation.validateProduct(product);
         return repository.updateProduct(id, product);
     }
