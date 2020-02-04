@@ -1,7 +1,8 @@
-package com.javaguru.shoppinglist;
+package domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 public class Product {
 
@@ -49,7 +50,6 @@ public class Product {
     }
 
     public void setName(String name) {
-
         this.name = name;
 
     }
@@ -61,6 +61,24 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price.setScale(2, RoundingMode.HALF_EVEN);
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return getId().equals(product.getId()) &&
+                getName().equals(product.getName()) &&
+                getPrice().equals(product.getPrice()) &&
+                getCategory().equals(product.getCategory()) &&
+                getDiscount().equals(product.getDiscount()) &&
+                getDescription().equals(product.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getPrice(), getCategory(), getDiscount(), getDescription());
     }
 
     @Override
