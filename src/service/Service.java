@@ -15,6 +15,7 @@ public class Service {
     }
 
     public Product findProductById(Long id) {
+        validation.validateId(repository.findProductById(id));
         return repository.findProductById(id);
     }
 

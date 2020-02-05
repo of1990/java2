@@ -10,7 +10,6 @@ public class ProductRepository {
     private Map<Long, Product> productRepository = new HashMap<>();
     private Long productIdSequence = 0L;
 
-
     public Product createProduct(Product product) {
         product.setId(productIdSequence);
         productRepository.put(productIdSequence, product);
@@ -20,6 +19,7 @@ public class ProductRepository {
 
     public Product findProductById(Long id) {
         return productRepository.get(id);
+
     }
 
     public Product deleteProduct(Long id) {
