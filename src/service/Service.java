@@ -20,10 +20,12 @@ public class Service {
     }
 
     public Product deleteProduct(Long id) {
+        validation.validateId(repository.findProductById(id));
         return repository.deleteProduct(id);
     }
 
     public Product updateProduct(Long id, Product product) {
+        validation.validateId(repository.findProductById(id));
         validation.validateProduct(product);
         return repository.updateProduct(id, product);
     }
