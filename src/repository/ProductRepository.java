@@ -21,6 +21,9 @@ public class ProductRepository {
         return productRepository.get(id);
 
     }
+    public boolean getValues(String name){
+        return productRepository.containsValue(name);
+    }
 
     public Product deleteProduct(Long id) {
         return productRepository.remove(id);

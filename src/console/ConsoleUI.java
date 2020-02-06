@@ -55,14 +55,12 @@ public class ConsoleUI {
         BigDecimal discount = new BigDecimal(scanner.nextLine());
         System.out.println("Enter product description");
         String description = scanner.nextLine();
-
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
         product.setCategory(category);
         product.setDiscount(discount);
         product.setDescription(description);
-
         Long id = service.createProduct(product);
         System.out.println("Product ID:" + id);
     }

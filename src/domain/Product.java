@@ -13,6 +13,7 @@ public class Product {
     private BigDecimal discount;
     private String description;
 
+
     public String getCategory() {
         return category;
     }
@@ -60,6 +61,8 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price.setScale(2, RoundingMode.HALF_EVEN);
+
+
 
     }
 

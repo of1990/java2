@@ -1,13 +1,20 @@
 package service.validation;
 
 import domain.Product;
+import repository.ProductRepository;
 
 import java.math.BigDecimal;
 
 public class ValidationService {
 
+    public void validateUniqueness (Product product,ProductRepository repository){
+        if (product.getName().equals(repository.getValues(product.getName()))) {
+            throw new ProductValidationException("test");
+        }
+    }
 
     public void validateProduct(Product product) {
+
         if (product.getName().length() < 2 || product.getName().length() > 32) {
             throw new ProductValidationException("The name must be no shorter than 3 characters and no longer than 32 characters");
         }
