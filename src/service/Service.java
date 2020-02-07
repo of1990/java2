@@ -10,7 +10,7 @@ public class Service {
 
     public Long createProduct(Product product) {
         validation.validateProduct(product);
-        validation.validateUniqueness(product,repository);
+        validation.validateUniqueProductName (product,repository);
         Product createdProduct = repository.createProduct(product);
         return createdProduct.getId();
     }
@@ -28,5 +28,6 @@ public class Service {
         validation.validateProduct(product);
         return repository.updateProduct(id, product);
     }
-}
+    }
+
 

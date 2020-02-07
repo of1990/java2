@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 public class ValidationService {
 
-    public void validateUniqueness (Product product,ProductRepository repository){
-        if (product.getName().equals(repository.getValues(product.getName()))) {
+    public void validateUniqueProductName (Product product,ProductRepository repository){
+        if (repository.findByName(product.getName()) != null) {
             throw new ProductValidationException("test");
         }
     }

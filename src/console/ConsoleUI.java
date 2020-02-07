@@ -1,6 +1,7 @@
 package console;
 
 import domain.Product;
+import repository.ProductRepository;
 import service.Service;
 
 import java.math.BigDecimal;
@@ -107,4 +108,6 @@ public class ConsoleUI {
         System.out.println("Product updated");
 
     }
-}
+
+    }
+
