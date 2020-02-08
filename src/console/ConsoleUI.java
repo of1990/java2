@@ -1,7 +1,6 @@
 package console;
 
 import domain.Product;
-import repository.ProductRepository;
 import service.Service;
 
 import java.math.BigDecimal;
@@ -20,7 +19,8 @@ public class ConsoleUI {
                 System.out.println("2. Find product by id");
                 System.out.println("3. Update product");
                 System.out.println("4. Delete product");
-                System.out.println("5. Exit");
+                System.out.println("5. Find by name");
+                System.out.println("6. Exit");
                 Integer userInput = Integer.valueOf(scanner.nextLine());
                 switch (userInput) {
                     case 1:
@@ -36,12 +36,25 @@ public class ConsoleUI {
                         deleteProduct();
                         break;
                     case 5:
+                        findByName();
+                        break;
+                    case 6:
                         return;
                 }
             } catch (Exception e) {
                 System.out.println("Error! Please try again. " + e.getMessage());
             }
         }
+    }
+
+    private void findByName() {
+        Product product = new Product();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter product name: ");
+        String name = scanner.nextLine();
+        product = service.findByName(product, name);
+        System.out.println(product);
+
     }
 
     private void createProduct() {
@@ -56,6 +69,7 @@ public class ConsoleUI {
         BigDecimal discount = new BigDecimal(scanner.nextLine());
         System.out.println("Enter product description");
         String description = scanner.nextLine();
+
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
@@ -109,5 +123,5 @@ public class ConsoleUI {
 
     }
 
-    }
+}
 

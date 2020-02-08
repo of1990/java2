@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 public class ValidationService {
 
-    public void validateUniqueProductName (Product product,ProductRepository repository){
+    public void validateUniqueProductName(Product product, ProductRepository repository) {
         if (repository.findByName(product.getName()) != null) {
-            throw new ProductValidationException("test");
+            throw new ProductValidationException("Product with this name already exists!");
         }
     }
 

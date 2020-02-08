@@ -10,7 +10,7 @@ public class Service {
 
     public Long createProduct(Product product) {
         validation.validateProduct(product);
-        validation.validateUniqueProductName (product,repository);
+        validation.validateUniqueProductName(product, repository);
         Product createdProduct = repository.createProduct(product);
         return createdProduct.getId();
     }
@@ -18,6 +18,11 @@ public class Service {
     public Product findProductById(Long id) {
         validation.validateId(repository.findProductById(id));
         return repository.findProductById(id);
+    }
+
+    public Product findByName(Product product, String name) {
+        validation.validateUniqueProductName(product, repository);
+        return repository.findByName(name);
     }
 
     public Product deleteProduct(Long id) {
@@ -28,6 +33,6 @@ public class Service {
         validation.validateProduct(product);
         return repository.updateProduct(id, product);
     }
-    }
+}
 
 

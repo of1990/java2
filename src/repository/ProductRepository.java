@@ -22,7 +22,8 @@ public class ProductRepository {
         return productRepository.get(id);
 
     }
-    public Product findByName (String name) {
+
+    public Product findByName(String name) {
         ArrayList<Product> products = new ArrayList<>(productRepository.values());
         for (Product product : products) {
             if (product.getName().equals(name)) {
