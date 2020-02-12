@@ -7,8 +7,11 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class ConsoleUI {
+    private final Service service;
 
-    private Service service = new Service();
+    public ConsoleUI(Service service) {
+        this.service = service;
+    }
 
     public void execute() {
 
@@ -21,7 +24,7 @@ public class ConsoleUI {
                 System.out.println("4. Delete product");
                 System.out.println("5. Find by name");
                 System.out.println("6. Exit");
-                Integer userInput = Integer.valueOf(scanner.nextLine());
+                int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
                         createProduct();

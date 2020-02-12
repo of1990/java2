@@ -2,7 +2,6 @@ package repository;
 
 import domain.Product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +23,7 @@ public class ProductRepository {
     }
 
     public Product findByName(String name) {
-        ArrayList<Product> products = new ArrayList<>(productRepository.values());
-        for (Product product : products) {
+        for (Product product : productRepository.values()) {
             if (product.getName().equals(name)) {
                 return product;
             }

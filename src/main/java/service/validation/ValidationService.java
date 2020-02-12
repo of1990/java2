@@ -6,8 +6,15 @@ import repository.ProductRepository;
 import java.math.BigDecimal;
 
 public class ValidationService {
+    private static final int MIN_NAME_LENGHT = 2;
+    private static final int MAX_NAME_LENGHT = 32;
+    private ProductRepository repository;
 
-    public void validateUniqueProductName(Product product, ProductRepository repository) {
+    public ValidationService(ProductRepository repository) {
+        this.repository = repository;
+    }
+
+    public void validateUniqueProductName(Product product) {
         if (repository.findByName(product.getName()) != null) {
             throw new ProductValidationException("Product with this name already exists!");
         }
@@ -15,7 +22,7 @@ public class ValidationService {
 
     public void validateProduct(Product product) {
 
-        if (product.getName().length() < 2 || product.getName().length() > 32) {
+        if (product.getName().length() < MIN_NAME_LENGHT || product.getName().length() > MAX_NAME_LENGHT) {
             throw new ProductValidationException("The name must be no shorter than 3 characters and no longer than 32 characters");
         }
 
