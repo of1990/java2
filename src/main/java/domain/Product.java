@@ -61,9 +61,6 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price.setScale(2, RoundingMode.HALF_EVEN);
-
-
-
     }
 
     @Override

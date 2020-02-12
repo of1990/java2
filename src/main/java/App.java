@@ -8,7 +8,6 @@ public class App {
         ProductRepository repository = new ProductRepository();
         ValidationService validation = new ValidationService(repository);
         Service service = new Service(repository, validation);
-
         ConsoleUI consoleUI = new ConsoleUI(service);
         consoleUI.execute();
     }
