@@ -26,3 +26,4 @@ nbdist/
 .nb-gradle/
 
 .DS_Store
+/src/main/java/com/javaguru/shoppinglist/

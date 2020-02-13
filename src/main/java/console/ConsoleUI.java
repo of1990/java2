@@ -125,6 +125,5 @@ public class ConsoleUI {
         System.out.println("Product updated");
 
     }
-
 }
 
