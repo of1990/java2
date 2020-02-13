@@ -4,6 +4,7 @@ __pycache__
 !gradle/wrapper/gradle-wrapper.jar
 /out/
 /com/
+/target/git rm -r -f --cached .
 
 ### STS ###
 .apt_generated
