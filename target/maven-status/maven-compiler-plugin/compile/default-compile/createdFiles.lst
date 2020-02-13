@@ -1,8 +1,0 @@
-repository/ProductRepository.class
-com/javaguru/shoppinglist/ShoppingListApplication.class
-App.class
-service/validation/ValidationService.class
-console/ConsoleUI.class
-service/Service.class
-service/validation/ProductValidationException.class
-domain/Product.class
