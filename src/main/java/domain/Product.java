@@ -13,7 +13,6 @@ public class Product {
     private BigDecimal discount;
     private String description;
 
-
     public String getCategory() {
         return category;
     }

@@ -6,5 +6,4 @@ public class ProductValidationException extends RuntimeException {
         super(message);
     }
 
-
 }
