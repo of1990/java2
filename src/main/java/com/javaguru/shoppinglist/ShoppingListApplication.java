@@ -1,5 +1,7 @@
 package com.javaguru.shoppinglist;
 
+import domain.Product;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,7 @@ class ShoppingListApplication {
                 System.out.println("3. Update product");
                 System.out.println("4. Delete product");
                 System.out.println("5. Exit");
-                Integer userInput = Integer.valueOf(scanner.nextLine());
+                int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
                         Product product = new Product();
