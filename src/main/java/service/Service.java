@@ -13,10 +13,10 @@ public class Service {
         this.validation = validation;
     }
 
-    public Long createProduct(Product product) {
+    public Long addProduct(Product product) {
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        Product createdProduct = repository.createProduct(product);
+        Product createdProduct = repository.addProduct(product);
         return createdProduct.getId();
     }
 
@@ -31,11 +31,14 @@ public class Service {
     }
 
     public Product deleteProduct(Long id) {
+        validation.validateId(repository.findProductById(id));
         return repository.deleteProduct(id);
     }
 
     public Product updateProduct(Long id, Product product) {
+        validation.validateId(repository.findProductById(id));
         validation.validateProduct(product);
+        validation.validateUniqueProductName(product);
         return repository.updateProduct(id, product);
     }
 }
