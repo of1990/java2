@@ -93,11 +93,18 @@ public class ServiceTest {
     public void updateProduct() {
         Product product = product();
         when(repository.updateProduct(1L, product)).thenReturn(product);
+        when(repository.findProductById(1L)).thenReturn(product);
         Product result = victim.updateProduct(1L, product);
         assertEquals(product, result);
+        verify(validation).validateProduct(productCaptor.capture());
+        Product captorResultProduct = productCaptor.getValue();
+        assertEquals(captorResultProduct, product);
+        verify(validation).validateUniqueProductName(productCaptor.capture());
+        Product captorResultUniqueName = productCaptor.getValue();
+        assertEquals(captorResultUniqueName, product);
         verify(validation).validateId(productCaptor.capture());
-        Product captorResult = productCaptor.getValue();
-        assertEquals(captorResult, product);
+        Product captorResultValidateId = productCaptor.getValue();
+        assertEquals(captorResultValidateId, product);
 
 
     }
