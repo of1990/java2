@@ -40,10 +40,23 @@ public class ValidationServiceTest {
 
     @Test
     public void shouldReturnProductIfNameIsUnique() {
+       /* Product product = new Product();
+        product.setName("apple");
+        product.setDiscount(new BigDecimal(25));
+        product.setPrice(new BigDecimal(3));
+        product.setCategory("fruits");
+        product.setDescription("tasty");
+        product.setId(1L);
+        when(repository.findByName(product.getName())).thenReturn(product);
+        assertThatThrownBy(() -> victim.validateUniqueProductName(product)).
+                isInstanceOf(ProductValidationException.class).hasMessage("Product with this name already exists!");
+        verify(victim).c
+
+        */
 
     }
 
-    
+
     @Test
     public void shouldThrowExceptionNameMustNotBeLessThan3() {
         Product product = new Product();
@@ -117,13 +130,15 @@ public class ValidationServiceTest {
     }
 
     @Test
-    public void validateProductById() {
+    public void shouldThrowExceptionIdNotFound() {
         Product product = null;
         assertThatThrownBy(() -> victim.validateId(product)).
                 isInstanceOf(ProductValidationException.class).
                 hasMessage("Id not found or entered incorrectly");
 
     }
+
+
 
 
 
