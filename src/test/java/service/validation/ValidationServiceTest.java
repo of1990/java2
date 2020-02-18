@@ -11,6 +11,7 @@ import repository.ProductRepository;
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -40,7 +41,7 @@ public class ValidationServiceTest {
 
     @Test
     public void shouldReturnProductIfNameIsUnique() {
-       /* Product product = new Product();
+        Product product = new Product();
         product.setName("apple");
         product.setDiscount(new BigDecimal(25));
         product.setPrice(new BigDecimal(3));
@@ -52,7 +53,6 @@ public class ValidationServiceTest {
                 isInstanceOf(ProductValidationException.class).hasMessage("Product with this name already exists!");
         verify(victim).c
 
-        */
 
     }
 
