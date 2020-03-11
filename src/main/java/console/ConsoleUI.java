@@ -27,7 +27,7 @@ public class ConsoleUI {
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
-                        createProduct();
+                        addProduct();
                         break;
                     case 2:
                         findProductById();
@@ -60,7 +60,7 @@ public class ConsoleUI {
 
     }
 
-    private void createProduct() {
+    private void addProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
         String name = scanner.nextLine();
@@ -79,7 +79,7 @@ public class ConsoleUI {
         product.setCategory(category);
         product.setDiscount(discount);
         product.setDescription(description);
-        Long id = service.createProduct(product);
+        Long id = service.addProduct(product);
         System.out.println("Product ID:" + id);
     }
 
