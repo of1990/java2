@@ -1,12 +1,14 @@
 package service.validation;
 
-import domain.Product;
+import com.shoppinglist.domain.Product;
+import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.service.validation.ProductValidationException;
+import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import repository.ProductRepository;
 
 import java.math.BigDecimal;
 

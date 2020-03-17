@@ -1,4 +1,4 @@
-package domain;
+package com.shoppinglist.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

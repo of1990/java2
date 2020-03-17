@@ -1,13 +1,17 @@
-package service;
+package com.shoppinglist.service;
 
-import domain.Product;
-import repository.ProductRepository;
-import service.validation.ValidationService;
+import com.shoppinglist.domain.Product;
+import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.service.validation.ValidationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Service {
     private final ProductRepository repository;
     private final ValidationService validation;
 
+    @Autowired
     public Service(ProductRepository repository, ValidationService validation) {
         this.repository = repository;
         this.validation = validation;

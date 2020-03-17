@@ -1,6 +1,7 @@
 package repository;
 
-import domain.Product;
+import com.shoppinglist.domain.Product;
+import com.shoppinglist.repository.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
