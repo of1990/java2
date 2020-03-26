@@ -1,6 +1,9 @@
 package service;
 
-import domain.Product;
+import com.shoppinglist.domain.Product;
+import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.service.Service;
+import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -8,8 +11,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import repository.ProductRepository;
-import service.validation.ValidationService;
 
 import java.math.BigDecimal;
 

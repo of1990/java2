@@ -1,4 +1,5 @@
-package service.validation;
+package com.shoppinglist.service.validation;
+
 
 public class ProductValidationException extends RuntimeException {
 

@@ -1,10 +1,12 @@
-package repository;
+package com.shoppinglist.repository;
 
-import domain.Product;
+import com.shoppinglist.domain.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class ProductRepository {
 
     private Map<Long, Product> productRepository = new HashMap<>();
