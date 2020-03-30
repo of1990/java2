@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
@@ -38,7 +39,7 @@ public class ValidationServiceTest {
     public void shouldReturnProductIfNameIsUnique() {
         Product product = new Product();
         product.setName("apple");
-        when(repository.findByName(product.getName())).thenReturn(null);
+        when(repository.findByName(product.getName())).thenReturn(Optional.empty());
         victim.validateUniqueProductName(product);
 
     }

@@ -36,16 +36,17 @@ public class Service {
         return repository.findByName(name);
     }
 
-    public void deleteProduct(Long id) {
+    public Optional<Product> deleteProduct(Long id) {
         validation.validateId(repository.findProductById(id).orElse(null));
         repository.deleteProduct(id);
+        return Optional.empty();
     }
 
-    public void updateProduct(Long id, Product product) {
+    public Optional<Product> updateProduct(Long id, Product product) {
         validation.validateId(repository.findProductById(id).orElse(null));
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        repository.updateProduct(id, product);
+        return repository.updateProduct(id, product);
     }
 }
 

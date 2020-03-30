@@ -34,20 +34,18 @@ public class inMemoryProductRepositoryTest {
         Product result = victim.findByName(PRODUCT_NAME).orElse(null);
         assertThat(product.getName()).isEqualTo(result);
     }
-/*
     @Test
     public void deleteProduct() {
-        Product result = victim.deleteProduct(PRODUCT_ID);
+        Product result = victim.deleteProduct(PRODUCT_ID).orElse(null);
         assertThat(product = null).isEqualTo(result);
     }
 
     @Test
     public void updateProduct() {
-        Product result = victim.updateProduct(PRODUCT_ID, product);
+        Product result = victim.updateProduct(PRODUCT_ID, product).orElse(null);
         assertThat(product).isEqualTo(result);
 
     }
 
 
- */
 }

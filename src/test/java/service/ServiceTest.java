@@ -79,23 +79,24 @@ public class ServiceTest {
         assertEquals(captorResult, product);
         assertEquals(product(), result);
     }
-/*
+
     @Test
     public void deleteProduct() {
         when(repository.deleteProduct(0L)).thenReturn(null);
-        Product result = victim.deleteProduct(0L);
+        Product result = victim.deleteProduct(0L).orElse(null);
         verify(validation).validateId(productCaptor.capture());
         Product captorResult = productCaptor.getValue();
         assertEquals(captorResult, null);
         assertEquals(null, result);
     }
 
+
     @Test
     public void updateProduct() {
         Product product = product();
-        when(repository.updateProduct(1L, product)).thenReturn(product);
-        when(repository.findProductById(1L)).thenReturn(product);
-        Product result = victim.updateProduct(1L, product);
+        when(repository.updateProduct(1L, product)).thenReturn(java.util.Optional.of(product));
+        when(repository.findProductById(1L)).thenReturn(java.util.Optional.of(product));
+        Product result = victim.updateProduct(1L, product).orElse(null);
         assertEquals(product, result);
         verify(validation).validateProduct(productCaptor.capture());
         Product captorResultProduct = productCaptor.getValue();
@@ -110,6 +111,5 @@ public class ServiceTest {
     }
 
 
- */
 
 }

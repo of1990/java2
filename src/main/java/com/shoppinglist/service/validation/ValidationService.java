@@ -19,7 +19,7 @@ public class ValidationService {
     }
 
     public void validateUniqueProductName(Product product) {
-        if (repository.findByName(product.getName()) != null) {
+        if (repository.findByName(product.getName()).isPresent()) {
             throw new ProductValidationException("Product with this name already exists!");
         }
     }

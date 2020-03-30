@@ -11,9 +11,9 @@ public interface ProductRepository {
 
     Optional<Product> findByName(String name);
 
-    void deleteProduct(Long id);
+    Optional<Product> deleteProduct(Long id);
 
-    void updateProduct(Long id, Product product);
+    Optional<Product> updateProduct(Long id, Product product);
 
 }
 
