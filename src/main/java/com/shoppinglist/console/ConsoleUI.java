@@ -59,7 +59,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
         String name = scanner.nextLine();
-        product = service.findByName(product, name);
+        product = service.findByName(product, name).orElse(null);
         System.out.println(product);
 
     }
@@ -91,7 +91,7 @@ public class ConsoleUI {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Product product = service.findProductById(id);
+        Product product = service.findProductById(id).orElse(null);
         System.out.println(product);
     }
 
@@ -106,10 +106,9 @@ public class ConsoleUI {
     private void updateProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
-        Long id = scanner.nextLong();
+        Long id = Long.valueOf(scanner.nextLine());
         System.out.println("Enter product name: ");
         String name = scanner.nextLine();
-        scanner.nextLine();
         System.out.println("Enter product price: ");
         BigDecimal price = new BigDecimal(scanner.nextLine());
         System.out.println("Enter product category: ");

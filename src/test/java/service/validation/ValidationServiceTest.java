@@ -1,7 +1,7 @@
 package service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.repository.InMemoryProductRepository;
 import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class ValidationServiceTest {
 
     @Mock
-    private ProductRepository repository;
+    private InMemoryProductRepository repository;
     @InjectMocks
     private ValidationService victim;
 
@@ -29,7 +29,7 @@ public class ValidationServiceTest {
     public void shouldThrowExceptionIfNameIsNotUnique() {
         Product product = new Product();
         product.setName("apple");
-        when(repository.findByName(product.getName())).thenReturn(product);
+        when(repository.findByName(product.getName())).thenReturn(java.util.Optional.of(product));
         assertThatThrownBy(() -> victim.validateUniqueProductName(product)).
                 isInstanceOf(ProductValidationException.class).hasMessage("Product with this name already exists!");
     }

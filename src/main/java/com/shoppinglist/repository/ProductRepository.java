@@ -1,45 +1,19 @@
 package com.shoppinglist.repository;
 
 import com.shoppinglist.domain.Product;
-import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
-@Component
-public class ProductRepository {
+public interface ProductRepository {
+    Product addProduct(Product product);
 
-    private Map<Long, Product> productRepository = new HashMap<>();
-    private Long productIdSequence = 0L;
+    Optional<Product> findProductById(Long id);
 
-    public Product addProduct(Product product) {
-        product.setId(productIdSequence);
-        productRepository.put(productIdSequence, product);
-        productIdSequence++;
-        return product;
-    }
+    Optional<Product> findByName(String name);
 
-    public Product findProductById(Long id) {
-        return productRepository.get(id);
+    void deleteProduct(Long id);
 
-    }
-
-    public Product findByName(String name) {
-        for (Product product : productRepository.values()) {
-            if (product.getName().equalsIgnoreCase(name)) {
-                return product;
-            }
-        }
-        return null;
-    }
-
-    public Product deleteProduct(Long id) {
-        return productRepository.remove(id);
-    }
-
-    public Product updateProduct(Long id, Product product) {
-        productRepository.replace(id, product);
-        return product;
-    }
+    void updateProduct(Long id, Product product);
 
 }
+
