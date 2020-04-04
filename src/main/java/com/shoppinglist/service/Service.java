@@ -2,6 +2,7 @@ package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
 import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,22 +28,31 @@ public class Service {
     }
 
     public Optional<Product> findProductById(Long id) {
+        if (!repository.findProductById(id).isPresent()) {
+            throw new ProductValidationException("Id not found or entered incorrectly");
+        }
         return repository.findProductById(id);
     }
 
     public Optional<Product> findByName(String name) {
-        validation.validateName(repository.findByName(name).orElse(null));
+        if (!repository.findByName(name).isPresent()) {
+            throw new ProductValidationException("Product name not found or entered incorrectly");
+        }
         return repository.findByName(name);
     }
 
     public Optional<Product> deleteProduct(Long id) {
-        validation.validateId(repository.findProductById(id).orElse(null));
+        if (!repository.findProductById(id).isPresent()) {
+            throw new ProductValidationException("Id not found or entered incorrectly");
+        }
         repository.deleteProduct(id);
         return Optional.empty();
     }
 
     public Optional<Product> updateProduct(Long id, Product product) {
-        validation.validateId(repository.findProductById(id).orElse(null));
+        if (!repository.findProductById(id).isPresent()) {
+            throw new ProductValidationException("Id not found or entered incorrectly");
+        }
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
         return repository.updateProduct(id, product);

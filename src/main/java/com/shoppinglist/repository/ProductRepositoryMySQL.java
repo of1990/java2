@@ -60,14 +60,15 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> findByName(String name) {
-        String query = "select * from product p where p.name=" + name;
-        List<Product> products = jdbcTemplate.query(query,
-                new BeanPropertyRowMapper(Product.class));
+        String query = "select * from product p where p.name=?";
+        List<Product> products = jdbcTemplate.query(query, new BeanPropertyRowMapper(Product.class), name);
         if (!products.isEmpty()) {
             return Optional.ofNullable(products.get(0));
         }
         return Optional.empty();
+
     }
+
 
 
     @Override
@@ -85,24 +86,21 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> updateProduct(Long id, Product product) {
-/*
-        String query = "update product name='?', price='?', category='?', discount='?', description='?' where id=" + id;
+        String query =
+                "UPDATE products SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
+                        "WHERE id = ?";
 
-        jdbcTemplate.update(connection -> {
-                    PreparedStatement ps = connection
-                            .prepareStatement(query);
-                    ps.setString(1, product.getName());
-                    ps.setBigDecimal(2, product.getPrice());
-                    ps.setString(3, product.getCategory());
-                    ps.setBigDecimal(4, product.getDiscount());
-                    ps.setString(5, product.getDescription());
-                    return ps;
-                }
-        );
-
- */
+        jdbcTemplate.update(query);
+        product.getName();
+        product.getPrice();
+        product.getCategory();
+        product.getDiscount();
+        product.getDescription();
         return Optional.ofNullable(product);
+
+    }
+
     }
 
 
-}
+

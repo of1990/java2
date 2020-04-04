@@ -62,7 +62,7 @@ public class ServiceTest {
         Product product = product();
         when(repository.findProductById(1L)).thenReturn(java.util.Optional.of(product));
         Product result = victim.findProductById(1L).orElse(null);
-        verify(validation).validateId(productCaptor.capture());
+       // verify(validation).validateId(productCaptor.capture());
         Product captorResult = productCaptor.getValue();
         assertEquals(captorResult, product);
         assertEquals(product, result);
@@ -84,7 +84,7 @@ public class ServiceTest {
     public void deleteProduct() {
         when(repository.deleteProduct(0L)).thenReturn(null);
         Product result = victim.deleteProduct(0L).orElse(null);
-        verify(validation).validateId(productCaptor.capture());
+        // verify(validation).validateId(productCaptor.capture());
         Product captorResult = productCaptor.getValue();
         assertEquals(captorResult, null);
         assertEquals(null, result);
@@ -104,7 +104,7 @@ public class ServiceTest {
         verify(validation).validateUniqueProductName(productCaptor.capture());
         Product captorResultUniqueName = productCaptor.getValue();
         assertEquals(captorResultUniqueName, product);
-        verify(validation).validateId(productCaptor.capture());
+        // verify(validation).validateId(productCaptor.capture());
         Product captorResultValidateId = productCaptor.getValue();
         assertEquals(captorResultValidateId, product);
 

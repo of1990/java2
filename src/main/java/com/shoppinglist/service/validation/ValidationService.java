@@ -15,9 +15,9 @@ public class ValidationService {
 
 
     @Autowired
-    public ValidationService(ProductRepository repository1) {
+    public ValidationService(ProductRepository repository) {
 
-        this.repository = repository1;
+        this.repository = repository;
     }
 
     public void validateUniqueProductName(Product product) {
@@ -41,17 +41,4 @@ public class ValidationService {
         }
     }
 
-    public void validateId(Product product) {
-        if (product == null) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
-        }
-
-    }
-
-    public void validateName(Product product) {
-        if (product == null) {
-            throw new ProductValidationException("Product name not found or entered incorrectly");
-        }
-
-    }
 }

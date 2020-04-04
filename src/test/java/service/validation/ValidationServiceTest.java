@@ -120,21 +120,5 @@ public class ValidationServiceTest {
     }
 
 
-    @Test
-    public void shouldThrowExceptionIdNotFound() {
-        Product product = null;
-        assertThatThrownBy(() -> victim.validateId(product)).
-                isInstanceOf(ProductValidationException.class).
-                hasMessage("Id not found or entered incorrectly");
-
-    }
-
-    @Test
-    public void FoundId() {
-        Product product = new Product();
-        product.setId(1L);
-        victim.validateId(product);
-    }
-
 
 }
