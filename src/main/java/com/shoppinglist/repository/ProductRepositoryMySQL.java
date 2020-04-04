@@ -60,7 +60,7 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> findByName(String name) {
-        String query = "select * from product where product.name=" + "name";
+        String query = "select * from product p where p.name=" + name;
         List<Product> products = jdbcTemplate.query(query,
                 new BeanPropertyRowMapper(Product.class));
         if (!products.isEmpty()) {

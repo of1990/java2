@@ -27,7 +27,6 @@ public class Service {
     }
 
     public Optional<Product> findProductById(Long id) {
-        validation.validateId(repository.findProductById(id).orElse(null));
         return repository.findProductById(id);
     }
 
