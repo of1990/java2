@@ -86,21 +86,20 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> updateProduct(Long id, Product product) {
-        String query = "UPDATE products SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
+        String query = "UPDATE product SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
                 "WHERE id = ?";
 
-        jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection
-                    .prepareStatement(query);
-            ps.setString(1, product.getName());
-            ps.setBigDecimal(2, product.getPrice());
-            ps.setString(3, product.getCategory());
-            ps.setBigDecimal(4, product.getDiscount());
-            ps.setString(5, product.getDescription());
-            return ps;
-        });
-
+        jdbcTemplate.update(
+                query,
+                product.getName(),
+                product.getCategory(),
+                product.getPrice(),
+                product.getDiscount(),
+                product.getDescription(),
+                product.getId()
+        );
         return Optional.ofNullable(product);
     }
+
 }
 
