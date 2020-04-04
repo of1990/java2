@@ -1,7 +1,7 @@
 package com.shoppinglist.service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.InMemoryProductRepository;
+import com.shoppinglist.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +11,13 @@ import java.math.BigDecimal;
 public class ValidationService {
     private static final int MIN_NAME_LENGHT = 2;
     private static final int MAX_NAME_LENGHT = 32;
-    private InMemoryProductRepository repository;
+    private ProductRepository repository;
+
 
     @Autowired
-    public ValidationService(InMemoryProductRepository repository) {
-        this.repository = repository;
+    public ValidationService(ProductRepository repository1) {
+
+        this.repository = repository1;
     }
 
     public void validateUniqueProductName(Product product) {
@@ -46,4 +48,10 @@ public class ValidationService {
 
     }
 
+    public void validateName(Product product) {
+        if (product == null) {
+            throw new ProductValidationException("Product name not found or entered incorrectly");
+        }
+
+    }
 }

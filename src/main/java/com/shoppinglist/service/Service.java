@@ -1,7 +1,7 @@
 package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.InMemoryProductRepository;
+import com.shoppinglist.repository.ProductRepository;
 import com.shoppinglist.service.validation.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @Component
 public class Service {
-    private final InMemoryProductRepository repository;
+    private final ProductRepository repository;
     private final ValidationService validation;
 
     @Autowired
-    public Service(InMemoryProductRepository repository, ValidationService validation) {
+    public Service(ProductRepository repository, ValidationService validation) {
         this.repository = repository;
         this.validation = validation;
     }
@@ -31,8 +31,8 @@ public class Service {
         return repository.findProductById(id);
     }
 
-    public Optional<Product> findByName(Product product, String name) {
-        validation.validateUniqueProductName(product);
+    public Optional<Product> findByName(String name) {
+        validation.validateName(repository.findByName(name).orElse(null));
         return repository.findByName(name);
     }
 

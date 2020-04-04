@@ -73,7 +73,7 @@ public class ServiceTest {
     public void findByName() {
         Product product = product();
         when(repository.findByName("apple")).thenReturn(java.util.Optional.of(product));
-        Product result = victim.findByName(product, "apple").orElse(null);
+        Product result = victim.findByName("apple").orElse(null);
         verify(validation).validateUniqueProductName(productCaptor.capture());
         Product captorResult = productCaptor.getValue();
         assertEquals(captorResult, product);

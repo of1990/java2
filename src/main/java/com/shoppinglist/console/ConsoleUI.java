@@ -55,11 +55,11 @@ public class ConsoleUI {
     }
 
     private void findByName() {
-        Product product = new Product();
+        Product product;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
         String name = scanner.nextLine();
-        product = service.findByName(product, name).orElse(null);
+        product = service.findByName(name).orElse(null);
         System.out.println(product);
 
     }
