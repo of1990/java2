@@ -89,17 +89,18 @@ public class ProductRepositoryMySQL implements ProductRepository {
         String query = "UPDATE products SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
                 "WHERE id = ?";
 
-        jdbcTemplate.update(query);
-        product.getName();
-        product.getPrice();
-        product.getCategory();
-        product.getDiscount();
-        product.getDescription();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection
+                    .prepareStatement(query);
+            ps.setString(1, product.getName());
+            ps.setBigDecimal(2, product.getPrice());
+            ps.setString(3, product.getCategory());
+            ps.setBigDecimal(4, product.getDiscount());
+            ps.setString(5, product.getDescription());
+            return ps;
+        });
+
         return Optional.ofNullable(product);
-
     }
-
-    }
-
-
+}
 
