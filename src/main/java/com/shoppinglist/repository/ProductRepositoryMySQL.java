@@ -86,9 +86,8 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> updateProduct(Long id, Product product) {
-        String query =
-                "UPDATE products SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
-                        "WHERE id = ?";
+        String query = "UPDATE products SET name = ?, category = ?, price = ?, discount = ?, description = ? " +
+                "WHERE id = ?";
 
         jdbcTemplate.update(query);
         product.getName();
