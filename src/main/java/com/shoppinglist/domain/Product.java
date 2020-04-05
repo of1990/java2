@@ -1,16 +1,28 @@
 package com.shoppinglist.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+
+@Entity
+@Table(name = "product")
 public class Product {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "category")
     private String category;
+    @Column(name = "discount")
     private BigDecimal discount;
+    @Column(name = "description")
     private String description;
 
     public String getCategory() {
