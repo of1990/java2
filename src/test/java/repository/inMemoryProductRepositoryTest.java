@@ -6,16 +6,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
 
 public class inMemoryProductRepositoryTest {
 
+
     private static final long PRODUCT_ID = 0L;
     private static final String PRODUCT_NAME = "apple";
     private InMemoryProductRepository victim = new InMemoryProductRepository();
     private Product product = new Product();
+
 
     @Test
     public void addProduct() {
@@ -25,27 +29,27 @@ public class inMemoryProductRepositoryTest {
 
     @Test
     public void findProductById() {
-        Product result = victim.findProductById(PRODUCT_ID).orElse(null);
-        assertThat(product.getId()).isEqualTo(result);
+        Optional<Product> result = victim.findProductById(PRODUCT_ID);
+        assertThat(Optional.ofNullable(product.getId())).isEqualTo(result);
     }
 
     @Test
     public void findByName() {
-        Product result = victim.findByName(PRODUCT_NAME).orElse(null);
-        assertThat(product.getName()).isEqualTo(result);
+        Optional<Product> result = victim.findByName(PRODUCT_NAME);
+        assertThat(Optional.ofNullable(product.getName())).isEqualTo(result);
     }
+
     @Test
     public void deleteProduct() {
-        Product result = victim.deleteProduct(PRODUCT_ID).orElse(null);
-        assertThat(product = null).isEqualTo(result);
+        Optional<Product> result = victim.deleteProduct(PRODUCT_ID);
+        assertThat(Optional.empty()).isEqualTo(result);
     }
 
     @Test
     public void updateProduct() {
-        Product result = victim.updateProduct(PRODUCT_ID, product).orElse(null);
-        assertThat(product).isEqualTo(result);
+        Optional<Product> result = victim.updateProduct(PRODUCT_ID, product);
+        assertThat(Optional.ofNullable(product)).isEqualTo(result);
 
     }
-
 
 }

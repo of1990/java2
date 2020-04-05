@@ -85,8 +85,8 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     @Override
     public Optional<Product> updateProduct(Long id, Product product) {
-        String query = "UPDATE product  SET id = id, name = ?, category = ?, price = ?, discount = ?, description = ?" +
-                "WHERE id = id";
+        String query = "UPDATE product SET name = ?, category = ?, price = ?, discount = ?, description = ?" +
+                "WHERE id =" + id;
 
         jdbcTemplate.update(
                 query,
@@ -94,8 +94,8 @@ public class ProductRepositoryMySQL implements ProductRepository {
                 product.getCategory(),
                 product.getPrice(),
                 product.getDiscount(),
-                product.getDescription(),
-                product.getId()
+                product.getDescription()
+
 
         );
         return Optional.ofNullable(product);

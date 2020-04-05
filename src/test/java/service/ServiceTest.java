@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -60,54 +61,36 @@ public class ServiceTest {
     @Test
     public void shouldFindProductById() {
         Product product = product();
-        when(repository.findProductById(1L)).thenReturn(java.util.Optional.of(product));
-        Product result = victim.findProductById(1L).orElse(null);
-       // verify(validation).validateId(productCaptor.capture());
-        Product captorResult = productCaptor.getValue();
-        assertEquals(captorResult, product);
-        assertEquals(product, result);
+        when(repository.findProductById(1L)).thenReturn(Optional.of(product));
+        Optional<Product> result = victim.findProductById(1L);
+        assertEquals(Optional.ofNullable(product), result);
 
     }
 
     @Test
     public void findByName() {
         Product product = product();
-        when(repository.findByName("apple")).thenReturn(java.util.Optional.of(product));
-        Product result = victim.findByName("apple").orElse(null);
-        verify(validation).validateUniqueProductName(productCaptor.capture());
-        Product captorResult = productCaptor.getValue();
-        assertEquals(captorResult, product);
-        assertEquals(product(), result);
+        when(repository.findByName("apple")).thenReturn(Optional.of(product));
+        Optional<Product> result = victim.findByName("apple");
+        assertEquals(Optional.ofNullable(product), result);
     }
 
     @Test
     public void deleteProduct() {
         when(repository.deleteProduct(0L)).thenReturn(null);
-        Product result = victim.deleteProduct(0L).orElse(null);
-        Product captorResult = productCaptor.getValue();
-        assertEquals(captorResult, null);
+        Optional<Product> result = victim.deleteProduct(0L);
         assertEquals(null, result);
     }
-
 
     @Test
     public void updateProduct() {
         Product product = product();
-        when(repository.updateProduct(1L, product)).thenReturn(java.util.Optional.of(product));
-        when(repository.findProductById(1L)).thenReturn(java.util.Optional.of(product));
-        Product result = victim.updateProduct(1L, product).orElse(null);
-        assertEquals(product, result);
-        verify(validation).validateProduct(productCaptor.capture());
-        Product captorResultProduct = productCaptor.getValue();
-        assertEquals(captorResultProduct, product);
-        verify(validation).validateUniqueProductName(productCaptor.capture());
-        Product captorResultUniqueName = productCaptor.getValue();
-        assertEquals(captorResultUniqueName, product);
-        Product captorResultValidateId = productCaptor.getValue();
-        assertEquals(captorResultValidateId, product);
+        when(repository.updateProduct(1L, product)).thenReturn(Optional.of(product));
+        when(repository.findProductById(1L)).thenReturn(Optional.of(product));
+        Optional<Product> result = victim.updateProduct(1L, product);
+        assertEquals(Optional.ofNullable(product), result);
+
 
     }
-
-
 
 }
