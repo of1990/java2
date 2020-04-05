@@ -42,7 +42,8 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     public Optional<Product> updateProduct(Long id, Product product) {
-        return Optional.ofNullable(productRepository.replace(id, product));
+        productRepository.replace(id, product);
+        return Optional.ofNullable(product);
 
     }
 
