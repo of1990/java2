@@ -78,9 +78,10 @@ public class ServiceTest {
     @Test
     public void deleteProduct() {
         Product product = product();
+        when(repository.findProductById(1L)).thenReturn(Optional.of(product));
         when(repository.deleteProduct(1L)).thenReturn(Optional.empty());
         Optional<Product> result = victim.deleteProduct(1L);
-        assertEquals(Optional.ofNullable(product), result);
+        assertEquals(Optional.empty(), result);
     }
 
     @Test

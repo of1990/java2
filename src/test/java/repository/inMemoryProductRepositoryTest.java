@@ -39,11 +39,6 @@ public class inMemoryProductRepositoryTest {
         assertThat(Optional.ofNullable(product.getName())).isEqualTo(result);
     }
 
-    @Test
-    public void deleteProduct() {
-        Optional<Product> result = victim.deleteProduct(PRODUCT_ID);
-        assertThat(Optional.empty()).isEqualTo(result);
-    }
 
     @Test
     public void updateProduct() {
