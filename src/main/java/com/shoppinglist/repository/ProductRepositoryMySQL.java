@@ -69,7 +69,6 @@ public class ProductRepositoryMySQL implements ProductRepository {
 
     }
 
-
     @Override
     public Optional<Product> deleteProduct(Long id) {
         String query = "delete from product where id=" + id;
@@ -95,8 +94,6 @@ public class ProductRepositoryMySQL implements ProductRepository {
                 product.getPrice(),
                 product.getDiscount(),
                 product.getDescription()
-
-
         );
         return Optional.ofNullable(product);
     }
