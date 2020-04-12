@@ -47,18 +47,17 @@ public class Service {
         repository.deleteProduct(product);
     }
 
-    public Optional<Product> updateProduct(Long id, Product product) {
-        if (!repository.findProductById(id).isPresent()) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
-        }
-        validation.validateProduct(product);
-        validation.validateUniqueProductName(product);
-        product.setId(product.getId());
-        product.setName(product.getName());
-        product.setPrice(product.getPrice());
-        product.setCategory(product.getCategory());
-        product.setDiscount(product.getDiscount());
-        product.setDescription(product.getDescription());
+    public Optional<Product> updateProduct(Long id, Product newProduct) {
+        Product product = repository.findProductById(id)
+                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+
+        validation.validateProduct(newProduct);
+        validation.validateUniqueProductName(newProduct);
+        product.setName(newProduct.getName());
+        product.setPrice(newProduct.getPrice());
+        product.setCategory(newProduct.getCategory());
+        product.setDiscount(newProduct.getDiscount());
+        product.setDescription(newProduct.getDescription());
         return repository.updateProduct(product);
     }
 }
