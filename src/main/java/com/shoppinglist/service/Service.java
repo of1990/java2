@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Transactional
+
 public class Service {
     private final RepositoryHibernate repository;
     private final ValidationService validation;
