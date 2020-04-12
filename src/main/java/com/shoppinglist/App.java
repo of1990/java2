@@ -1,7 +1,6 @@
 package com.shoppinglist;
 
 import com.shoppinglist.Config.ApplicationConfiguration;
-import com.shoppinglist.console.Con;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
