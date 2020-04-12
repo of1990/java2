@@ -3,9 +3,11 @@ package com.shoppinglist.service.validation;
 import com.shoppinglist.domain.Product;
 import com.shoppinglist.repository.RepositoryHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class ValidationService {
     private static final int MIN_NAME_LENGHT = 2;
     private static final int MAX_NAME_LENGHT = 32;

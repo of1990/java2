@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-@Transactional
-
+@org.springframework.stereotype.Service
 public class Service {
     private final RepositoryHibernate repository;
     private final ValidationService validation;
@@ -21,6 +20,7 @@ public class Service {
         this.validation = validation;
     }
 
+    @Transactional
     public Long addProduct(Product product) {
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);

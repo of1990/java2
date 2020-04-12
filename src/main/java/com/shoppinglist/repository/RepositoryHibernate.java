@@ -4,17 +4,20 @@ import com.shoppinglist.domain.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+
+@Repository
 @Transactional
 public class RepositoryHibernate {
 
     private final SessionFactory sessionFactory;
 @Autowired
-    public RepositoryHibernate(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+public RepositoryHibernate(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+}
 
 
     public Product addProduct(Product product) {
