@@ -80,7 +80,7 @@ public class ServiceTest {
         Product product = product();
         when(repository.findProductById(1L)).thenReturn(Optional.of(product));
         victim.deleteProduct(product.getId());
-        verify(repository).deleteProduct(1L);
+        verify(repository).deleteProduct(product);
     }
 
 

@@ -39,8 +39,8 @@ public RepositoryHibernate(SessionFactory sessionFactory) {
         return Optional.ofNullable(product);
     }
 
-    public void deleteProduct(Long id) {
-        sessionFactory.getCurrentSession().delete(id);
+    public void deleteProduct(Product product) {
+        sessionFactory.getCurrentSession().delete(product);
     }
 
     public Optional<Product> updateProduct(Product product) {

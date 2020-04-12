@@ -19,7 +19,6 @@ public class Service {
         this.repository = repository;
         this.validation = validation;
     }
-
     @Transactional
     public Long addProduct(Product product) {
         validation.validateProduct(product);
@@ -43,10 +42,9 @@ public class Service {
     }
 
     public void deleteProduct(Long id) {
-        if (!repository.findProductById(id).isPresent()) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
-        }
-        repository.deleteProduct(id);
+        Product product = repository.findProductById(id)
+                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+        repository.deleteProduct(product);
     }
 
     public Optional<Product> updateProduct(Long id, Product product) {
@@ -55,6 +53,12 @@ public class Service {
         }
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
+        product.setId(product.getId());
+        product.setName(product.getName());
+        product.setPrice(product.getPrice());
+        product.setCategory(product.getCategory());
+        product.setDiscount(product.getDiscount());
+        product.setDescription(product.getDescription());
         return repository.updateProduct(product);
     }
 }
