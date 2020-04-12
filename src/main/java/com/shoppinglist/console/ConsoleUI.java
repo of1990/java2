@@ -1,11 +1,12 @@
 package com.shoppinglist.console;
 
 import com.shoppinglist.console.action.Action;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
 
-
+@Component
 public class ConsoleUI {
     private final List<Action> actions;
 
