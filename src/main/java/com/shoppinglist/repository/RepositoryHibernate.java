@@ -12,11 +12,11 @@ import java.util.Optional;
 public class RepositoryHibernate {
 
     private final SessionFactory sessionFactory;
-
-    @Autowired
+@Autowired
     public RepositoryHibernate(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 
     public Product addProduct(Product product) {
         sessionFactory.getCurrentSession().save(product);
@@ -37,12 +37,13 @@ public class RepositoryHibernate {
         return Optional.ofNullable(product);
     }
 
-    public void deleteProduct(Long product) {
-        sessionFactory.getCurrentSession().delete(product);
+    public void deleteProduct(Long id) {
+        sessionFactory.getCurrentSession().delete(id);
     }
 
-    public void updateProduct(Product product) {
+    public Optional<Product> updateProduct(Product product) {
         sessionFactory.getCurrentSession().update(product);
+        return Optional.ofNullable(product);
     }
 
 }

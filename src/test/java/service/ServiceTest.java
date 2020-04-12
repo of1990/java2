@@ -74,27 +74,24 @@ public class ServiceTest {
         Optional<Product> result = victim.findByName("apple");
         assertEquals(Optional.ofNullable(product), result);
     }
-/*
+
     @Test
     public void deleteProduct() {
         Product product = product();
         when(repository.findProductById(1L)).thenReturn(Optional.of(product));
-        when(repository.deleteProduct(1L)).thenReturn(null);
-        Product result = victim.deleteProduct(1L);
-        assertEquals(null, result);
+        victim.deleteProduct(product.getId());
+        verify(repository).deleteProduct(1L);
     }
+
 
     @Test
     public void updateProduct() {
         Product product = product();
-        when(repository.updateProduct(1L, product)).thenReturn(Optional.of(product));
         when(repository.findProductById(1L)).thenReturn(Optional.of(product));
+        when(repository.updateProduct(product)).thenReturn(Optional.of(product));
         Optional<Product> result = victim.updateProduct(1L, product);
         assertEquals(Optional.ofNullable(product), result);
 
 
     }
-
-
- */
 }

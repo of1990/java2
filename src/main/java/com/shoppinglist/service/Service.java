@@ -48,13 +48,13 @@ public class Service {
         repository.deleteProduct(id);
     }
 
-    public void updateProduct(Long id, Product product) {
+    public Optional<Product> updateProduct(Long id, Product product) {
         if (!repository.findProductById(id).isPresent()) {
             throw new ProductValidationException("Id not found or entered incorrectly");
         }
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        repository.updateProduct(product);
+        return repository.updateProduct(product);
     }
 }
 
