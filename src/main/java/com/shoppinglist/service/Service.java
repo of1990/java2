@@ -1,25 +1,26 @@
 package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.repository.RepositoryHibernate;
 import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
-@Component
+
 public class Service {
-    private final ProductRepository repository;
+    private final RepositoryHibernate repository;
     private final ValidationService validation;
 
     @Autowired
-    public Service(ProductRepository repository, ValidationService validation) {
+    public Service(RepositoryHibernate repository, ValidationService validation) {
         this.repository = repository;
         this.validation = validation;
     }
 
+    @Transactional
     public Long addProduct(Product product) {
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
@@ -41,21 +42,20 @@ public class Service {
         return repository.findByName(name);
     }
 
-    public Optional<Product> deleteProduct(Long id) {
+    public void deleteProduct(Long id) {
         if (!repository.findProductById(id).isPresent()) {
             throw new ProductValidationException("Id not found or entered incorrectly");
         }
         repository.deleteProduct(id);
-        return Optional.empty();
     }
 
-    public Optional<Product> updateProduct(Long id, Product product) {
+    public void updateProduct(Long id, Product product) {
         if (!repository.findProductById(id).isPresent()) {
             throw new ProductValidationException("Id not found or entered incorrectly");
         }
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        return repository.updateProduct(id, product);
+        repository.updateProduct(product);
     }
 }
 

@@ -1,21 +1,19 @@
 package com.shoppinglist.service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.repository.RepositoryHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-@Component
 public class ValidationService {
     private static final int MIN_NAME_LENGHT = 2;
     private static final int MAX_NAME_LENGHT = 32;
-    private ProductRepository repository;
+    private RepositoryHibernate repository;
 
 
     @Autowired
-    public ValidationService(ProductRepository repository) {
+    public ValidationService(RepositoryHibernate repository) {
 
         this.repository = repository;
     }

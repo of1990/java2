@@ -3,12 +3,11 @@ package com.shoppinglist.console;
 import com.shoppinglist.domain.Product;
 import com.shoppinglist.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-@Component
+
 public class ConsoleUI {
     private final Service service;
 

@@ -1,7 +1,8 @@
 package com.shoppinglist.Config;
 
-import com.mysql.cj.xdevapi.SessionFactory;
+
 import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -19,19 +21,9 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "com.shoppinglist")
 @PropertySource("classpath:application.properties")
+@EnableTransactionManagement
 public class ApplicationConfiguration {
 
-    @Value("${jdbc.url}")
-    private String jdbcUrl;
-
-    @Value("${driverClass}")
-    private String driverClass;
-
-    @Value("${database.user.name}")
-    private String userName;
-
-    @Value("${database.user.password}")
-    private String password;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -39,7 +31,11 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(
+            @Value("${jdbc.url}") String jdbcUrl,
+            @Value("${driverClass}") String driverClass,
+            @Value("${database.user.name}") String userName,
+            @Value("${database.user.password}") String password) {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl(jdbcUrl);
         dataSource.setDriverClassName(driverClass);
@@ -49,8 +45,8 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 
     @Bean
@@ -79,11 +75,11 @@ public class ApplicationConfiguration {
         sessionFactoryBean.setPackagesToScan(packagesToScan);
         sessionFactoryBean.setHibernateProperties(hibernateProperties);
         sessionFactoryBean.afterPropertiesSet();
-        return (SessionFactory) sessionFactoryBean.getObject();
+        return sessionFactoryBean.getObject();
     }
 
     @Bean
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
-        return new HibernateTransactionManager((org.hibernate.SessionFactory) sessionFactory);
+        return new HibernateTransactionManager(sessionFactory);
     }
 }
