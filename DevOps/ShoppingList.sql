@@ -1,14 +1,25 @@
-CREATE TABLE "product"
+CREATE SCHEMA IF NOT EXISTS shoppinglist DEFAULT CHARACTER SET utf8;
+USE shoppinglist;
+
+CREATE TABLE IF NOT EXISTS product
 (
-    `id`          bigint      NOT NULL AUTO_INCREMENT,
-    `name`        varchar(32) NOT NULL,
-    `price`       decimal(10, 0)   DEFAULT NULL,
-    `category`    varchar(100)     DEFAULT NULL,
-    `discount`    decimal(10, 0)   DEFAULT NULL,
-    `description` varchar(300)     DEFAULT NULL,
-    `created`     timestamp   NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1006
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci
+    id          BIGINT      NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(32) NOT NULL,
+    price       DECIMAL,
+    category    VARCHAR(100),
+    discount    DECIMAL,
+    description VARCHAR(300),
+    created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS shoppingCart
+(
+    id   BIGINT      NOT NULL AUTO_INCREMENT,
+    name VARCHAR(32) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+

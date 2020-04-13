@@ -1,8 +1,8 @@
 package service;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.RepositoryHibernate;
-import com.shoppinglist.service.Service;
+import com.shoppinglist.repository.ProductRepositoryHibernate;
+import com.shoppinglist.service.ProductService;
 import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,16 +21,16 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class ServiceTest {
+public class ProductServiceTest {
 
     @Mock
-    private RepositoryHibernate repository;
+    private ProductRepositoryHibernate repository;
     @Mock
     private ValidationService validation;
     @Captor
     private ArgumentCaptor<Product> productCaptor;
     @InjectMocks
-    private Service victim;
+    private ProductService victim;
 
     private Product product() {
         Product product = new Product();

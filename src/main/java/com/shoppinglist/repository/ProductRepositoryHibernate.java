@@ -11,13 +11,14 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public class RepositoryHibernate {
+public class ProductRepositoryHibernate {
 
     private final SessionFactory sessionFactory;
-@Autowired
-public RepositoryHibernate(SessionFactory sessionFactory) {
-    this.sessionFactory = sessionFactory;
-}
+
+    @Autowired
+    public ProductRepositoryHibernate(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 
     public Product addProduct(Product product) {

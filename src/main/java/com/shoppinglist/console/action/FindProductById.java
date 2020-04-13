@@ -1,7 +1,7 @@
 package com.shoppinglist.console.action;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.service.Service;
+import com.shoppinglist.service.ProductService;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -11,10 +11,10 @@ public class FindProductById implements Action {
 
     private static final String ACTION_NAME = "Find by ID";
 
-    private final Service service;
+    private final ProductService productService;
 
-    public FindProductById(Service service) {
-        this.service = service;
+    public FindProductById(ProductService productService) {
+        this.productService = productService;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class FindProductById implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        Product product = service.findProductById(id).orElse(null);
+        Product product = productService.findProductById(id).orElse(null);
         System.out.println(product);
 
     }

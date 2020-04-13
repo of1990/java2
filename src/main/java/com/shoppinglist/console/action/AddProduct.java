@@ -1,7 +1,7 @@
 package com.shoppinglist.console.action;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.service.Service;
+import com.shoppinglist.service.ProductService;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -11,10 +11,10 @@ import java.util.Scanner;
 public class AddProduct implements Action {
 
     private static final String ACTION_NAME = "Add Product";
-    private final Service service;
+    private final ProductService productService;
 
-    public AddProduct(Service service) {
-        this.service = service;
+    public AddProduct(ProductService productService) {
+        this.productService = productService;
     }
 
 
@@ -38,7 +38,7 @@ public class AddProduct implements Action {
         product.setCategory(category);
         product.setDiscount(discount);
         product.setDescription(description);
-        Long id = service.addProduct(product);
+        Long id = productService.addProduct(product);
         System.out.println("Product ID:" + id);
 
     }

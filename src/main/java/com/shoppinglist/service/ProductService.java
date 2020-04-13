@@ -1,7 +1,7 @@
 package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.RepositoryHibernate;
+import com.shoppinglist.repository.ProductRepositoryHibernate;
 import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +10,16 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class Service {
-    private final RepositoryHibernate repository;
+public class ProductService {
+    private final ProductRepositoryHibernate repository;
     private final ValidationService validation;
 
     @Autowired
-    public Service(RepositoryHibernate repository, ValidationService validation) {
+    public ProductService(ProductRepositoryHibernate repository, ValidationService validation) {
         this.repository = repository;
         this.validation = validation;
     }
+
     @Transactional
     public Long addProduct(Product product) {
         validation.validateProduct(product);

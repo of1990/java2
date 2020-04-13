@@ -1,7 +1,7 @@
 package service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.RepositoryHibernate;
+import com.shoppinglist.repository.ProductRepositoryHibernate;
 import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
@@ -18,10 +18,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class ValidationServiceTest {
+public class ValidationProductServiceTest {
 
     @Mock
-    private RepositoryHibernate repository;
+    private ProductRepositoryHibernate repository;
     @InjectMocks
     private ValidationService victim;
 

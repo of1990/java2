@@ -1,6 +1,6 @@
 package com.shoppinglist.console.action;
 
-import com.shoppinglist.service.Service;
+import com.shoppinglist.service.ProductService;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -8,10 +8,10 @@ import java.util.Scanner;
 @Component
 public class DeleteProduct implements Action {
     private static final String ACTION_NAME = "Delete Product";
-    private final Service service;
+    private final ProductService productService;
 
-    public DeleteProduct(Service service) {
-        this.service = service;
+    public DeleteProduct(ProductService productService) {
+        this.productService = productService;
     }
 
     @Override
@@ -19,7 +19,7 @@ public class DeleteProduct implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
-        service.deleteProduct(id);
+        productService.deleteProduct(id);
         System.out.println("Product has been removed!");
     }
 
