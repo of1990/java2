@@ -2,7 +2,6 @@ package com.shoppinglist.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
 
 
@@ -24,29 +23,15 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
+    @Column(name = "shopping_cart_id")
+    private Long shoppingCartId;
 
-    public String getCategory() {
-        return category;
+    public Long getShoppingCartId() {
+        return shoppingCartId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount.setScale(2, RoundingMode.HALF_EVEN);
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShoppingCartId(Long shoppingCartId) {
+        this.shoppingCartId = shoppingCartId;
     }
 
     public Long getId() {
@@ -63,7 +48,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-
     }
 
     public BigDecimal getPrice() {
@@ -71,25 +55,50 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getId().equals(product.getId()) &&
-                getName().equals(product.getName()) &&
-                getPrice().equals(product.getPrice()) &&
-                getCategory().equals(product.getCategory()) &&
-                getDiscount().equals(product.getDiscount()) &&
-                getDescription().equals(product.getDescription());
+        return id.equals(product.id) &&
+                name.equals(product.name) &&
+                price.equals(product.price) &&
+                category.equals(product.category) &&
+                discount.equals(product.discount) &&
+                description.equals(product.description) &&
+                shoppingCartId.equals(product.shoppingCartId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPrice(), getCategory(), getDiscount(), getDescription());
+        return Objects.hash(id, name, price, category, discount, description, shoppingCartId);
     }
 
     @Override
@@ -101,7 +110,7 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", discount=" + discount +
                 ", description='" + description + '\'' +
+                ", shoppingCartId=" + shoppingCartId +
                 '}';
     }
-
 }

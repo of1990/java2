@@ -1,6 +1,6 @@
 package com.shoppinglist.domain;
-
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -8,11 +8,13 @@ import java.util.Objects;
 public class ShoppingCart {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
+    @OneToMany
+    @JoinColumn(name = "shopping_cart_id")
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -30,18 +32,27 @@ public class ShoppingCart {
         this.name = name;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
         return id.equals(that.id) &&
-                name.equals(that.name);
+                name.equals(that.name) &&
+                products.equals(that.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, products);
     }
 
     @Override
@@ -49,6 +60,7 @@ public class ShoppingCart {
         return "ShoppingCart{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

@@ -32,6 +32,7 @@ public class AddProduct implements Action {
         System.out.println("Enter product description");
         String description = scanner.nextLine();
 
+
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);

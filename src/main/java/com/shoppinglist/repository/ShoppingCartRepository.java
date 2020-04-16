@@ -19,7 +19,7 @@ public class ShoppingCartRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public ShoppingCart addShoppongCart(ShoppingCart shoppingCart) {
+    public ShoppingCart addShoppingCart(ShoppingCart shoppingCart) {
         sessionFactory.getCurrentSession().save(shoppingCart);
         return shoppingCart;
     }
