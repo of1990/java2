@@ -26,7 +26,7 @@ public class Product {
     //@Column(name = "shopping_cart_id")
     // private Long shoppingCartId;
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "shopping_cart_id", insertable = false, updatable = false)
     private ShoppingCart shoppingCart;
 
     public Long getId() {

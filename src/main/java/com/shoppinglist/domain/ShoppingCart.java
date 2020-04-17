@@ -60,7 +60,6 @@ public class ShoppingCart {
         return "ShoppingCart{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", products=" + products +
                 '}';
     }
 }

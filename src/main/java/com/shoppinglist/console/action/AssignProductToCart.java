@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class AssignProductToShoppingCart implements Action {
+public class AssignProductToCart implements Action {
     private static final String ACTION_NAME = "Assign Products to Shopping cart ";
 
     private final ProductCartService productCartService;
 
-    public AssignProductToShoppingCart(ProductCartService productCartService) {
+    public AssignProductToCart(ProductCartService productCartService) {
         this.productCartService = productCartService;
     }
 
