@@ -12,7 +12,7 @@ public class ShoppingCart {
     private Long id;
     @Column(name = "name")
     private String name;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id")
     private List<Product> products;
 

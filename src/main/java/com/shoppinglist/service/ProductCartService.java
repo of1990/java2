@@ -2,9 +2,11 @@ package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
 import com.shoppinglist.domain.ShoppingCart;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
 
+@Service
 public class ProductCartService {
     private final ShoppingCartService shoppingCartService;
     private final ProductService service;
@@ -14,10 +16,11 @@ public class ProductCartService {
         this.service = service;
     }
 
+    @Transactional
     public void assignProductToCart(Long productId, Long shoppingCartId) {
-        Optional<Product> product = service.findProductById(productId);
-        Optional<ShoppingCart> shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId);
-        shoppingCart.g
+        Product product = service.findProductById(productId).orElse(null);
+        ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId).orElse(null);
+        shoppingCart.getProducts().add(product);
 
 
     }

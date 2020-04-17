@@ -22,6 +22,7 @@ public class ConsoleUIConfig {
         private final Action addShoppingCart;
         private final Action findShoppingCartById;
         private final Action deleteShoppingCart;
+        private final Action assignProductToShoppingCart;
 
         @Autowired
         public ConsoleUIConfiguration(Action addProduct,
@@ -32,7 +33,8 @@ public class ConsoleUIConfig {
                                       Action exit,
                                       Action addShoppingCart,
                                       Action findShoppingCartById,
-                                      Action deleteShoppingCart) {
+                                      Action deleteShoppingCart,
+                                      Action assignProductToShoppingCart) {
             this.addProduct = addProduct;
             this.findProductById = findProductById;
             this.findByName = findByName;
@@ -42,6 +44,7 @@ public class ConsoleUIConfig {
             this.addShoppingCart = addShoppingCart;
             this.findShoppingCartById = findShoppingCartById;
             this.deleteShoppingCart = deleteShoppingCart;
+            this.assignProductToShoppingCart = assignProductToShoppingCart;
         }
 
 
@@ -57,6 +60,7 @@ public class ConsoleUIConfig {
             actions.add(addShoppingCart);
             actions.add(findShoppingCartById);
             actions.add(deleteShoppingCart);
+            actions.add(assignProductToShoppingCart);
 
             return new ConsoleUI(actions);
         }

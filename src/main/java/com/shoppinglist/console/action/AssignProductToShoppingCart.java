@@ -1,9 +1,11 @@
 package com.shoppinglist.console.action;
 
 import com.shoppinglist.service.ProductCartService;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class AssignProductToShoppingCart implements Action {
     private static final String ACTION_NAME = "Assign Products to Shopping cart ";
 
