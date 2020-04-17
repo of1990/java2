@@ -17,6 +17,8 @@ public class ProductCartService {
     public void assignProductToCart(Long productId, Long shoppingCartId) {
         Optional<Product> product = service.findProductById(productId);
         Optional<ShoppingCart> shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId);
-        
+        shoppingCart.g
+
+
     }
 }

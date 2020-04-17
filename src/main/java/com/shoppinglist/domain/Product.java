@@ -23,16 +23,11 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
-    @Column(name = "shopping_cart_id")
-    private Long shoppingCartId;
-
-    public Long getShoppingCartId() {
-        return shoppingCartId;
-    }
-
-    public void setShoppingCartId(Long shoppingCartId) {
-        this.shoppingCartId = shoppingCartId;
-    }
+    //@Column(name = "shopping_cart_id")
+    // private Long shoppingCartId;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private ShoppingCart shoppingCart;
 
     public Long getId() {
         return id;
@@ -82,23 +77,31 @@ public class Product {
         this.description = description;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id.equals(product.id) &&
-                name.equals(product.name) &&
-                price.equals(product.price) &&
-                category.equals(product.category) &&
-                discount.equals(product.discount) &&
-                description.equals(product.description) &&
-                shoppingCartId.equals(product.shoppingCartId);
+        return Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(price, product.price) &&
+                Objects.equals(category, product.category) &&
+                Objects.equals(discount, product.discount) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(shoppingCart, product.shoppingCart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, discount, description, shoppingCartId);
+        return Objects.hash(id, name, price, category, discount, description, shoppingCart);
     }
 
     @Override
@@ -110,7 +113,7 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", discount=" + discount +
                 ", description='" + description + '\'' +
-                ", shoppingCartId=" + shoppingCartId +
+                ", shoppingCart=" + shoppingCart +
                 '}';
     }
 }
