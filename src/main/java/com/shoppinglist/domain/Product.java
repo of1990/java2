@@ -23,8 +23,6 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
-    //@Column(name = "shopping_cart_id")
-    // private Long shoppingCartId;
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id", insertable = false, updatable = false)
     private ShoppingCart shoppingCart;
