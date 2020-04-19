@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS product
     discount         DECIMAL,
     description      VARCHAR(300),
     created          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    Foreign key (shopping_cart_id) REFERENCES shoppingCart (id)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
