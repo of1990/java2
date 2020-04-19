@@ -1,3 +1,11 @@
+CREATE TABLE IF NOT EXISTS shoppingCart
+(
+    id   BIGINT      NOT NULL AUTO_INCREMENT,
+    name VARCHAR(32) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
 CREATE TABLE IF NOT EXISTS product
 (
     id          BIGINT      NOT NULL AUTO_INCREMENT,
@@ -16,9 +24,3 @@ CREATE TABLE IF NOT EXISTS product
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
 
-CREATE TABLE IF NOT EXISTS shoppingCart
-(
-    id   BIGINT      NOT NULL AUTO_INCREMENT,
-    name VARCHAR(32) NOT NULL,
-    PRIMARY KEY (id)
-);
