@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 public class ProductCartService {
     private final ShoppingCartService shoppingCartService;
     private final ProductService service;
+   // private final ProductCartService productCartService;
 
     public ProductCartService(ShoppingCartService shoppingCartService, ProductService service) {
         this.shoppingCartService = shoppingCartService;
@@ -20,7 +21,6 @@ public class ProductCartService {
     public void assignProductToCart(Long productId, Long shoppingCartId) {
         Product product = service.findProductById(productId).orElse(null);
         ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId).orElse(null);
-        shoppingCart.getProducts().add(product);
 
 
     }
