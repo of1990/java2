@@ -12,8 +12,12 @@ public class ShoppingCart {
     private Long id;
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shopping_cart_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "productsCart",
+            joinColumns = @JoinColumn(name = "shopping_cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
 
     public Long getId() {

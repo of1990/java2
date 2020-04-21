@@ -1,6 +1,5 @@
 package com.shoppinglist.console.action;
 
-
 import com.shoppinglist.service.ShoppingCartService;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,6 @@ public class DeleteShoppingCart implements Action {
     public DeleteShoppingCart(ShoppingCartService shoppingCartService) {
         this.shoppingCartService = shoppingCartService;
     }
-
 
     @Override
     public void execute() {
