@@ -13,10 +13,10 @@ public class ProductCart {
     private Long shoppingCartId;
     @Column(name = "product_id")
     private Long productId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shopping_cart_id", insertable = false, updatable = false)
     private ShoppingCart shoppingCart;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
 

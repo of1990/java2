@@ -15,8 +15,8 @@ public class ShoppingCart {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "productsCart",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
+            joinColumns = @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
     )
     private List<Product> products;
 

@@ -1,7 +1,9 @@
 package com.shoppinglist.service;
 
 import com.shoppinglist.domain.Product;
+import com.shoppinglist.domain.ProductCart;
 import com.shoppinglist.domain.ShoppingCart;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,20 +12,21 @@ import javax.transaction.Transactional;
 public class ProductCartService {
     private final ShoppingCartService shoppingCartService;
     private final ProductService service;
-    private final ProductCartService productCartService;
+    private final ProductCart productCart;
 
-    public ProductCartService(ShoppingCartService shoppingCartService, ProductService service, ProductCartService productCartService) {
+    @Autowired
+    public ProductCartService(ShoppingCartService shoppingCartService, ProductService service, ProductCart productCart) {
         this.shoppingCartService = shoppingCartService;
         this.service = service;
-        this.productCartService = productCartService;
+        this.productCart = productCart;
     }
 
     @Transactional
     public void assignProductToCart(Long productId, Long shoppingCartId) {
         Product product = service.findProductById(productId).orElse(null);
         ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId).orElse(null);
-        shoppingCart.getProducts().add(product);
-        product.getShoppingCarts().add(shoppingCart);
+        productCart.setProduct(product);
+        productCart.setShoppingCart(shoppingCart);
 
 
     }

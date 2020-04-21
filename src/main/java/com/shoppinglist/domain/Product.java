@@ -26,9 +26,11 @@ public class Product {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "productsCart",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "shopping_cart_id")
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
     )
+
+
     private List<ShoppingCart> shoppingCarts;
 
     public Long getId() {
