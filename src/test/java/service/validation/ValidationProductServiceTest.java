@@ -1,7 +1,7 @@
 package service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.repository.ProductRepositoryHibernate;
 import com.shoppinglist.service.validation.ProductValidationException;
 import com.shoppinglist.service.validation.ValidationService;
 import org.junit.Test;
@@ -11,16 +11,17 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class ValidationServiceTest {
+public class ValidationProductServiceTest {
 
     @Mock
-    private ProductRepository repository;
+    private ProductRepositoryHibernate repository;
     @InjectMocks
     private ValidationService victim;
 
@@ -29,7 +30,7 @@ public class ValidationServiceTest {
     public void shouldThrowExceptionIfNameIsNotUnique() {
         Product product = new Product();
         product.setName("apple");
-        when(repository.findByName(product.getName())).thenReturn(product);
+        when(repository.findByName(product.getName())).thenReturn(java.util.Optional.of(product));
         assertThatThrownBy(() -> victim.validateUniqueProductName(product)).
                 isInstanceOf(ProductValidationException.class).hasMessage("Product with this name already exists!");
     }
@@ -38,7 +39,7 @@ public class ValidationServiceTest {
     public void shouldReturnProductIfNameIsUnique() {
         Product product = new Product();
         product.setName("apple");
-        when(repository.findByName(product.getName())).thenReturn(null);
+        when(repository.findByName(product.getName())).thenReturn(Optional.empty());
         victim.validateUniqueProductName(product);
 
     }
@@ -118,22 +119,6 @@ public class ValidationServiceTest {
         victim.validateProduct(product);
     }
 
-
-    @Test
-    public void shouldThrowExceptionIdNotFound() {
-        Product product = null;
-        assertThatThrownBy(() -> victim.validateId(product)).
-                isInstanceOf(ProductValidationException.class).
-                hasMessage("Id not found or entered incorrectly");
-
-    }
-
-    @Test
-    public void FoundId() {
-        Product product = new Product();
-        product.setId(1L);
-        victim.validateId(product);
-    }
 
 
 }

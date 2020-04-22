@@ -10,7 +10,7 @@ public class App {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         ConsoleUI console = context.getBean(ConsoleUI.class);
-        console.execute();
+        console.start();
 
     }
 }

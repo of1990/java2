@@ -1,25 +1,27 @@
 package com.shoppinglist.service.validation;
 
 import com.shoppinglist.domain.Product;
-import com.shoppinglist.repository.ProductRepository;
+import com.shoppinglist.repository.ProductRepositoryHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Component
+@Service
 public class ValidationService {
     private static final int MIN_NAME_LENGHT = 2;
     private static final int MAX_NAME_LENGHT = 32;
-    private ProductRepository repository;
+    private final ProductRepositoryHibernate repository;
+
 
     @Autowired
-    public ValidationService(ProductRepository repository) {
+    public ValidationService(ProductRepositoryHibernate repository) {
+
         this.repository = repository;
     }
 
     public void validateUniqueProductName(Product product) {
-        if (repository.findByName(product.getName()) != null) {
+        if (repository.findByName(product.getName()).isPresent()) {
             throw new ProductValidationException("Product with this name already exists!");
         }
     }
@@ -37,13 +39,6 @@ public class ValidationService {
         if (product.getDiscount().compareTo(BigDecimal.ZERO) < 0 || product.getDiscount().intValue() > 100) {
             throw new ProductValidationException("The discount cannot be less than 0 and more than 100");
         }
-    }
-
-    public void validateId(Product product) {
-        if (product == null) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
-        }
-
     }
 
 }
