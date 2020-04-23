@@ -12,12 +12,9 @@ public class ShoppingCart {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "productsCart",
-            joinColumns = @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "shoppingCarts")
+
+
     private List<Product> products;
 
     public Long getId() {

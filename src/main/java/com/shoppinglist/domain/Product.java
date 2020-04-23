@@ -23,11 +23,11 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "productsCart",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "shopping_cart_id")}
     )
 
 

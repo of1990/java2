@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS product
 
 CREATE TABLE IF NOT EXISTS productsCart
 (
-    id               BIGINT NOT NULL,
     shopping_cart_id BIGINT NOT NULL,
     product_id       BIGINT NOT NULL
 );

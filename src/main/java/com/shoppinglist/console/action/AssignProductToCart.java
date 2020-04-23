@@ -24,6 +24,8 @@ public class AssignProductToCart implements Action {
         Long shoppingCartId = scanner.nextLong();
 
         productCartService.assignProductToCart(productId, shoppingCartId);
+
+
     }
 
     @Override

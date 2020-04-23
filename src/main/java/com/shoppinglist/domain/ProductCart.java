@@ -7,6 +7,7 @@ import java.util.Objects;
 @Table(name = "productsCart")
 
 public class ProductCart {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shopping_cart_id")
@@ -14,11 +15,14 @@ public class ProductCart {
     @Column(name = "product_id")
     private Long productId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shopping_cart_id", insertable = false, updatable = false)
+    @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id", insertable = false, updatable = false)
     private ShoppingCart shoppingCart;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
+
+
     private Product product;
+
 
     public Long getShoppingCartId() {
         return shoppingCartId;
@@ -77,4 +81,6 @@ public class ProductCart {
                 ", product=" + product +
                 '}';
     }
+
+
 }
