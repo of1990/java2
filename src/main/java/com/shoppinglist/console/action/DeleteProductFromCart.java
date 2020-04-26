@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class AssignProductToCart implements Action {
-    private static final String ACTION_NAME = "Assign Products to Shopping cart ";
+public class DeleteProductFromCart implements Action {
+    private static final String ACTION_NAME = "Delete Product From Cart ";
 
     private final ProductCartService productCartService;
 
-    public AssignProductToCart(ProductCartService productCartService) {
+
+    public DeleteProductFromCart(ProductCartService productCartService) {
         this.productCartService = productCartService;
     }
 
@@ -23,7 +24,7 @@ public class AssignProductToCart implements Action {
         System.out.println("Enter shopping cart id: ");
         Long shoppingCartId = scanner.nextLong();
 
-        productCartService.assignProductToCart(productId, shoppingCartId);
+        productCartService.deleteProductFromCart(productId, shoppingCartId);
 
 
     }
@@ -33,3 +34,4 @@ public class AssignProductToCart implements Action {
         return ACTION_NAME;
     }
 }
+

@@ -2,13 +2,12 @@ package com.shoppinglist.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
-
 
 @Entity
 @Table(name = "product")
 public class Product {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +22,15 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "shopping_cart_id", insertable = false, updatable = false)
-    private ShoppingCart shoppingCart;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "productsCart",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "shopping_cart_id")}
+    )
+
+
+    private List<ShoppingCart> shoppingCarts;
 
     public Long getId() {
         return id;
@@ -75,12 +80,12 @@ public class Product {
         this.description = description;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
     }
 
     @Override
@@ -94,12 +99,12 @@ public class Product {
                 Objects.equals(category, product.category) &&
                 Objects.equals(discount, product.discount) &&
                 Objects.equals(description, product.description) &&
-                Objects.equals(shoppingCart, product.shoppingCart);
+                Objects.equals(shoppingCarts, product.shoppingCarts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, discount, description, shoppingCart);
+        return Objects.hash(id, name, price, category, discount, description, shoppingCarts);
     }
 
     @Override
@@ -111,7 +116,7 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", discount=" + discount +
                 ", description='" + description + '\'' +
-                ", shoppingCart=" + shoppingCart +
+                ", shoppingCarts=" + shoppingCarts +
                 '}';
     }
 }
