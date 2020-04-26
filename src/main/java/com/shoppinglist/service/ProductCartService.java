@@ -13,6 +13,7 @@ public class ProductCartService {
     private final ShoppingCartService shoppingCartService;
     private final ProductService service;
 
+
     @Autowired
     public ProductCartService(ShoppingCartService shoppingCartService, ProductService service) {
         this.shoppingCartService = shoppingCartService;
@@ -27,4 +28,13 @@ public class ProductCartService {
         shoppingCart.getProducts().add(product);
 
     }
+
+    @Transactional
+    public void deleteProductFromCart(Long productId, Long shoppingCartId) {
+        Product product = service.findProductById(productId).orElse(null);
+        ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId).orElse(null);
+        shoppingCart.getProducts().remove(product);
+        product.getShoppingCarts().remove(shoppingCart);
+    }
+
 }

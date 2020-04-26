@@ -12,7 +12,7 @@ public class ShoppingCart {
     private Long id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "shoppingCarts")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "shoppingCarts")
 
 
     private List<Product> products;

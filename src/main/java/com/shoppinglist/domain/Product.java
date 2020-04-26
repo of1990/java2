@@ -8,7 +8,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "product")
 public class Product {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,7 @@ public class Product {
     private BigDecimal discount;
     @Column(name = "description")
     private String description;
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "productsCart",
             joinColumns = {@JoinColumn(name = "product_id")},
