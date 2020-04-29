@@ -21,11 +21,11 @@ public class ProductService {
     }
 
     @Transactional
-    public Long addProduct(Product product) {
+    public Product addProduct(Product product) {
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        Product createdProduct = repository.addProduct(product);
-        return createdProduct.getId();
+        return repository.addProduct(product);
+
     }
 
     public Optional<Product> findProductById(Long id) {

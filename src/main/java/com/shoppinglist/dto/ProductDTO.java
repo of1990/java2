@@ -12,6 +12,10 @@ public class ProductDTO {
     private BigDecimal discount;
     private String description;
 
+    public ProductDTO() {
+
+    }
+
     public ProductDTO(Long id, String name, BigDecimal price, String category, BigDecimal discount, String description) {
         this.id = id;
         this.name = name;
@@ -20,6 +24,7 @@ public class ProductDTO {
         this.discount = discount;
         this.description = description;
     }
+
 
     public Long getId() {
         return id;

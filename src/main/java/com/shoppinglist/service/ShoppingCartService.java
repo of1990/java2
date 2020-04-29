@@ -22,9 +22,8 @@ public class ShoppingCartService {
 
     @javax.transaction.Transactional
 
-    public Long addShoppingCart(ShoppingCart shoppingCart) {
-        ShoppingCart createdShoppingCart = shoppingCartRepository.addShoppingCart(shoppingCart);
-        return createdShoppingCart.getId();
+    public ShoppingCart addShoppingCart(ShoppingCart shoppingCart) {
+        return shoppingCartRepository.addShoppingCart(shoppingCart);
     }
 
     public Optional<ShoppingCart> findShoppingCartById(Long id) {
