@@ -28,14 +28,14 @@ public class ShoppingCartService {
 
     public Optional<ShoppingCart> findShoppingCartById(Long id) {
         if (!shoppingCartRepository.findShoppingCartById(id).isPresent()) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
+            throw new ProductValidationException("Shopping Cart Id not found or entered incorrectly");
         }
         return shoppingCartRepository.findShoppingCartById(id);
     }
 
     public void deleteShoppingCart(Long id) {
         ShoppingCart shoppingCart = shoppingCartRepository.findShoppingCartById(id)
-                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+                .orElseThrow(() -> new ProductValidationException("Shopping Cart Id not found or entered incorrectly"));
         shoppingCartRepository.deleteShoppingCart(shoppingCart);
     }
 }

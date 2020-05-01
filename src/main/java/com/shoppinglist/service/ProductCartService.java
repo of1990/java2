@@ -21,7 +21,7 @@ public class ProductCartService {
     }
 
     @Transactional
-    public void assignProductToCart(Long productId, Long shoppingCartId) {
+    public void assignProductToCart(Long shoppingCartId, Long productId) {
         Product product = service.findProductById(productId).orElse(null);
         ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(shoppingCartId).orElse(null);
         product.getShoppingCarts().add(shoppingCart);
