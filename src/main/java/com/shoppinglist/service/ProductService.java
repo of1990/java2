@@ -21,16 +21,16 @@ public class ProductService {
     }
 
     @Transactional
-    public Long addProduct(Product product) {
+    public Product addProduct(Product product) {
         validation.validateProduct(product);
         validation.validateUniqueProductName(product);
-        Product createdProduct = repository.addProduct(product);
-        return createdProduct.getId();
+        return repository.addProduct(product);
+
     }
 
     public Optional<Product> findProductById(Long id) {
         if (!repository.findProductById(id).isPresent()) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
+            throw new ProductValidationException("Product Id not found or entered incorrectly");
         }
         return repository.findProductById(id);
     }
@@ -44,13 +44,13 @@ public class ProductService {
 
     public void deleteProduct(Long id) {
         Product product = repository.findProductById(id)
-                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+                .orElseThrow(() -> new ProductValidationException("Product Id not found or entered incorrectly"));
         repository.deleteProduct(product);
     }
 
     public Optional<Product> updateProduct(Long id, Product newProduct) {
         Product product = repository.findProductById(id)
-                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+                .orElseThrow(() -> new ProductValidationException("Product Id not found or entered incorrectly"));
 
         validation.validateProduct(newProduct);
         validation.validateUniqueProductName(newProduct);

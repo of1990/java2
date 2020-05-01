@@ -12,8 +12,9 @@ public class ShoppingCart {
     private Long id;
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shopping_cart_id")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "shoppingCarts")
+
+
     private List<Product> products;
 
     public Long getId() {

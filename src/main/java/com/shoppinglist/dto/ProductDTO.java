@@ -1,36 +1,30 @@
-package com.shoppinglist.domain;
+package com.shoppinglist.dto;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "product")
-public class Product {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
+
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "price")
     private BigDecimal price;
-    @Column(name = "category")
     private String category;
-    @Column(name = "discount")
     private BigDecimal discount;
-    @Column(name = "description")
     private String description;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "productsCart",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "shopping_cart_id")}
-    )
 
+    public ProductDTO() {
 
-    private List<ShoppingCart> shoppingCarts;
+    }
+
+    public ProductDTO(Long id, String name, BigDecimal price, String category, BigDecimal discount, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.discount = discount;
+        this.description = description;
+    }
+
 
     public Long getId() {
         return id;
@@ -80,43 +74,33 @@ public class Product {
         this.description = description;
     }
 
-    public List<ShoppingCart> getShoppingCarts() {
-        return shoppingCarts;
-    }
-
-    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-        this.shoppingCarts = shoppingCarts;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price) &&
-                Objects.equals(category, product.category) &&
-                Objects.equals(discount, product.discount) &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(shoppingCarts, product.shoppingCarts);
+        ProductDTO that = (ProductDTO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(category, that.category) &&
+                Objects.equals(discount, that.discount) &&
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, discount, description, shoppingCarts);
+        return Objects.hash(id, name, price, category, discount, description);
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", discount=" + discount +
                 ", description='" + description + '\'' +
-                ", shoppingCarts=" + shoppingCarts +
                 '}';
     }
 }

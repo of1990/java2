@@ -47,7 +47,7 @@ public class ProductServiceTest {
     public void shouldAddProduct() {
         Product product = product();
         when(repository.addProduct(product)).thenReturn(product);
-        Long result = victim.addProduct(product);
+        Product result = victim.addProduct(product);
         verify(validation).validateProduct(productCaptor.capture());
         Product captorResultProduct = productCaptor.getValue();
         assertEquals(captorResultProduct, product);

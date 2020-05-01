@@ -22,21 +22,20 @@ public class ShoppingCartService {
 
     @javax.transaction.Transactional
 
-    public Long addShoppingCart(ShoppingCart shoppingCart) {
-        ShoppingCart createdShoppingCart = shoppingCartRepository.addShoppingCart(shoppingCart);
-        return createdShoppingCart.getId();
+    public ShoppingCart addShoppingCart(ShoppingCart shoppingCart) {
+        return shoppingCartRepository.addShoppingCart(shoppingCart);
     }
 
     public Optional<ShoppingCart> findShoppingCartById(Long id) {
         if (!shoppingCartRepository.findShoppingCartById(id).isPresent()) {
-            throw new ProductValidationException("Id not found or entered incorrectly");
+            throw new ProductValidationException("Shopping Cart Id not found or entered incorrectly");
         }
         return shoppingCartRepository.findShoppingCartById(id);
     }
 
     public void deleteShoppingCart(Long id) {
         ShoppingCart shoppingCart = shoppingCartRepository.findShoppingCartById(id)
-                .orElseThrow(() -> new ProductValidationException("Id not found or entered incorrectly"));
+                .orElseThrow(() -> new ProductValidationException("Shopping Cart Id not found or entered incorrectly"));
         shoppingCartRepository.deleteShoppingCart(shoppingCart);
     }
 }
